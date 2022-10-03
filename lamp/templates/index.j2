@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bienvenue sur {{ansible_hostname}}</title>
+</head>
+<body>
+	<h1>{{ansible_os_family}} Apache Web Server sur {{ansible_hostname}}</h1>
+	{% if lamp_packages is defined %}
+	<h2>Packages</h2>
+	<ul>
+		{% for item in lamp_packages %}
+		<li>{{item}}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<p>Merci de votre passage</p>
+	<em>{{ansible_user}}</em>
+</body>
+</html>

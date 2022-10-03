@@ -1,0 +1,7 @@
+---
+- hosts:
+    - debian
+    - rocky
+  tasks:
+    - name: ma tâche
+      action: ping

@@ -1,0 +1,21 @@
+---
+# tasks file for lamp
+- name: configuration des includes
+  include_vars: '{{ansible_os_family}}.yml'
+
+- name: LAMP installation
+  package:
+    name: '{{item}}'
+    state: present
+  with_items: '{{lamp_packages}}'
+  notify:
+    - service_apache restart
+    - service_mariadb restart
+
+- name: Mise en place de index.html
+  template:
+    src: templates/index.j2
+    dest: /var/www/html/index.html
+    owner: '{{apache.user}}'
+    group: '{{apache.user}}'
+    mode: 0644

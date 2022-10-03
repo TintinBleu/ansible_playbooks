@@ -1,0 +1,24 @@
+---
+- hosts: all
+  tasks:
+    - name: LAMP installation Debian
+      apt:
+        update_cache: true
+        name: '{{item}}'
+        state: absent
+      with_items:
+        - apache2
+        - mariadb-server
+        - php
+      when: ansible_distribution_file_variety == 'Debian'
+
+    - name: LAMP installation RedHat
+      dnf:
+        update_cache: true
+        name: '{{item}}'
+        state: absent
+      with_items:
+        - httpd
+        - mariadb-server
+        - php
+      when: ansible_distribution_file_variety == 'RedHat'

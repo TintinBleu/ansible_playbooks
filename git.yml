@@ -1,0 +1,17 @@
+---
+- hosts: all
+  vars:
+    repo: http://gitlab.ming.lan/ming/helloflask.git
+  tasks:
+    - name: vérifie que git soit présent ou alors l'installe
+      package:
+        name: git
+        state: present
+
+    - name: clone le repertoire
+      git:
+        repo: '{{repo}}'
+        #single_branch: true
+        clone: true
+        dest: helloflask
+        version: master

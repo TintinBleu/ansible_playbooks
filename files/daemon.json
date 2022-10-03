@@ -1,0 +1,3 @@
+{
+"insecure-registries": ["http://gitlab.ming.lan:5005"]
+}

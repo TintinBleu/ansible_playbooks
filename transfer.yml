@@ -1,0 +1,17 @@
+---
+- name: recuperer un fichier
+  hosts: debian
+  tasks:
+    - name: fetch
+      fetch:
+        src: /etc/skel/.profile
+        dest: /tmp/.profile
+        flat: true
+
+- name: envoie le fichier sur group de serveurs
+  hosts: kubernetes
+  tasks:
+    - name: copy
+      copy:
+        src: /tmp/.profile
+        dest: /etc/skel/.profile

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    directory: root
+    file: fichier
+  tasks:
+    - name: copie d'un fichier
+      copy:
+        src: '{{file}}'
+        dest: /{{directory}}/{{file}}

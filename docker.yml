@@ -1,0 +1,34 @@
+---
+- hosts: debian
+  vars:
+    image: gitlab.ming.lan:5005/ming/helloweb/helloweb
+    ports: 81:80
+  tasks:
+    - name: install pip docker
+      apt:
+        name:
+          - python3-pip
+          - docker.io
+        state: present
+
+    - name: install python docker library
+      pip:
+        name: docker
+        state: present
+
+    - name: mise en place de l'insecure registry
+      copy:
+        src: daemon.json
+        dest: /etc/docker/daemon.json
+          #notify: service docker
+
+    - name: service docker
+      service:
+        name: docker
+        state: restarted
+
+    - name: run helloweb
+      docker_container:
+        name: helloweb
+        image: '{{image}}'
+        ports: '{{ports}}'
