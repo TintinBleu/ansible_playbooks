@@ -17,3 +17,11 @@
       package:
         name: "*"
         state: latest
+
+---
+- hosts: ansible_docker_lab_db_1
+  tasks:
+  - name: Package installation
+    apt:
+      name: apache2
+      state: latest
