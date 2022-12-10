@@ -6,6 +6,13 @@
         path: /etc/hosts
         line: 172.19.30.172 ubuntu1.ming.lan
         state: present
+        
+    - name: insert after a line
+      lineinfile:
+        path: /root/text
+        insertafter: 'Hello Ming'
+        line: Hello Ansible
+        state: present
 
     - name: enlever cowsay des playbooks ansible
       lineinfile:
